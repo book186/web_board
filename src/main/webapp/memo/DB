@@ -1,0 +1,17 @@
+[DB »ý¼º Äõ¸®]
+
+CREATE DATABASE pty_db;
+
+use pty_db;
+
+CREATE table tb_board (
+	idx int primary key,
+ 	parent_idx int,
+ 	title varchar(100) not null,
+ 	contents varchar(4000) not null,
+ 	hit_cnt int not null,
+ 	del_gb char(1) default 'N' not null,
+ 	crea_dtm DATETIME default CURRENT_TIMESTAMP not null,
+	crea_id varchar(30) not null
+)
+ENGINE = InnoDB;
