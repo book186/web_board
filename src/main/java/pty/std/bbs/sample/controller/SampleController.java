@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -37,23 +38,6 @@ public class SampleController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/sample/testMapArgumentResolver.do")
-	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("");
-
-		if (commandMap.isEmpty() == false) {
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
-			Entry<String, Object> entry = null;
-
-			while (iterator.hasNext()) {
-				entry = iterator.next();
-				log.debug("[key] : " + entry.getKey() + " , [value] : " + entry.getValue());
-			}
-		}
-
-		return mv;
-	}
-
 	@RequestMapping(value = "/sample/openBoardWrite.do")
 	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sample/boardWrite");
@@ -62,10 +46,10 @@ public class SampleController {
 	}
 
 	@RequestMapping(value = "/sample/insertBoard.do")
-	public ModelAndView insertBoard(CommandMap commandMap) throws Exception {
+	public ModelAndView insertBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
 
-		sampleService.insertBoard(commandMap.getMap());
+		sampleService.insertBoard(commandMap.getMap(), request);
 
 		return mv;
 	}
@@ -75,7 +59,8 @@ public class SampleController {
 		ModelAndView mv = new ModelAndView("/sample/boardDetail");
 
 		Map<String, Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("map"));
+		mv.addObject("list", map.get("list"));
 
 		return mv;
 	}
@@ -85,16 +70,17 @@ public class SampleController {
 		ModelAndView mv = new ModelAndView("/sample/boardUpdate");
 
 		Map<String, Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("map"));
+		mv.addObject("list", map.get("list"));
 
 		return mv;
 	}
 
 	@RequestMapping(value = "/sample/updateBoard.do")
-	public ModelAndView updateBoard(CommandMap commandMap) throws Exception {
+	public ModelAndView updateBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
 
-		sampleService.updateBoard(commandMap.getMap());
+		sampleService.updateBoard(commandMap.getMap(), request);
 		mv.addObject("IDX", commandMap.get("IDX"));
 
 		return mv;

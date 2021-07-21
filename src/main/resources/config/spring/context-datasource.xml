@@ -7,8 +7,8 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@123.212.190.196:1521:orcl" />
-		<property name="username" value="gw8319" />
-		<property name="password" value="gw8319" />
+			value="jdbc:oracle:thin:@123.212.190.249:1521:ora10g" />
+		<property name="username" value="pty" />
+		<property name="password" value="pty" />
 	</bean>
 </beans>
