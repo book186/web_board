@@ -30,6 +30,11 @@
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$('#write').on("click", function(e) {
+				e.preventDefault();
+				fn_insertBoard();
+			});
+
 			$("#list").on("click", function(e) {
 				e.preventDefault();
 				fn_openBoardList();
