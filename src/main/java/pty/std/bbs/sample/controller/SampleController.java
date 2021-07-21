@@ -1,6 +1,5 @@
 package pty.std.bbs.sample.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import pty.std.bbs.common.common.CommandMap;
 import pty.std.bbs.sample.service.SampleService;
 
@@ -21,18 +21,15 @@ public class SampleController {
 	@Resource(name = "sampleService")
 	private SampleService sampleService;
 
-	@RequestMapping(value = "/sample/openBoardList.do")
-	public ModelAndView openSampleList(Map<String, Object> commandMap) throws Exception {
+	@RequestMapping(value="/sample/openBoardList.do")
+	public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/sample/boardList");
-
-		List<Map<String, Object>> list;
-		try {
-			list = sampleService.selectBoardList(commandMap);
-			mv.addObject("list", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		
+		Map<String,Object> resultMap = sampleService.selectBoardList(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo)resultMap.get("paginationInfo"));
+		mv.addObject("list", resultMap.get("result"));
+		
 		return mv;
 	}
 

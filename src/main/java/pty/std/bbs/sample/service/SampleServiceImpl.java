@@ -24,7 +24,7 @@ public class SampleServiceImpl implements SampleService {
 	private SampleDAO sampleDAO;
 
 	@Override
-	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectBoardList(Map<String, Object> map) throws Exception {
 		return sampleDAO.selectBoardList(map);
 	}
 
@@ -60,7 +60,7 @@ public class SampleServiceImpl implements SampleService {
 		sampleDAO.updateBoard(map);
 
 		sampleDAO.deleteFileList(map);
-		
+
 		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
 		Map<String, Object> tempMap = null;
 

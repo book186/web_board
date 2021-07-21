@@ -54,3 +54,14 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
 NOCACHE;
+
+============================================================================
+
+-- [TB_BOARD 테이블에 데이터 넣는 프로시져]
+BEGIN
+    FOR i IN 1..500 LOOP
+        INSERT INTO TB_BOARD(IDX, TITLE, CONTENTS, HIT_CNT, DEL_GB, CREA_DTM, CREA_ID)
+        VALUES(SEQ_TB_BOARD_IDX.NEXTVAL, '제목 '||i, '내용 '||i, 0, 'N', SYSDATE, 'Admin');
+    END LOOP;
+END;
+/
