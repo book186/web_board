@@ -16,7 +16,6 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		if (log.isDebugEnabled()) {
 			log.debug("====================== [START] ======================");
 			log.debug(" Requset URI : " + request.getRequestURL());
-			System.out.println(" Requset URI : " + request.getRequestURL());
 		}
 		return super.preHandle(request, response, handler);
 	}
