@@ -1,5 +1,6 @@
 package pty.std.bbs.sample.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -21,6 +22,9 @@ public class SampleController {
 	@Resource(name = "sampleService")
 	private SampleService sampleService;
 
+	/*
+	 * 전자정부프레임워크 페이지네이션
+	 */
 	@RequestMapping(value="/sample/openBoardList.do")
 	public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/sample/boardList");
@@ -32,6 +36,34 @@ public class SampleController {
 		
 		return mv;
 	}
+
+	/*
+	 * jQuery & Ajax 페이지네이션
+	 */
+	/*
+	@RequestMapping(value="/sample/openBoardList.do")
+	public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/sample/boardList");
+
+		return mv;
+	}
+
+	@RequestMapping(value="/sample/selectBoardList.do")
+	public ModelAndView selectBoardList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		List<Map<String,Object>> list = sampleService.selectBoardList(commandMap.getMap());
+		mv.addObject("list", list);
+		if(list.size() > 0){
+			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		}
+		else{
+			mv.addObject("TOTAL", 0);
+		}
+		
+		return mv;
+	}
+	*/
 
 	@RequestMapping(value = "/sample/openBoardWrite.do")
 	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception {

@@ -23,10 +23,23 @@ public class SampleServiceImpl implements SampleService {
 	@Resource(name = "sampleDAO")
 	private SampleDAO sampleDAO;
 
+	/*
+	 * 전자정부프레임워크 페이지네이션
+	 */
 	@Override
 	public Map<String, Object> selectBoardList(Map<String, Object> map) throws Exception {
 		return sampleDAO.selectBoardList(map);
 	}
+
+	/*
+	 * jQuery & Ajax 페이지네이션
+	 */
+	/*
+	@Override
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
+		return sampleDAO.selectBoardList(map);
+	}
+	*/
 
 	@Override
 	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {

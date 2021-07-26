@@ -10,10 +10,23 @@ import pty.std.bbs.common.dao.AbstractDAO;
 @Repository("sampleDAO")
 public class SampleDAO extends AbstractDAO {
 
+	/*
+	 * 전자정부프레임워크 페이지네이션
+	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardList(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectPagingList("sample.selectBoardList", map);
 	}
+
+	/*
+	 * jQuery & Ajax 페이지네이션
+	 */
+	/*
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectPagingList("sample.selectBoardList", map);
+	}
+	*/
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception {

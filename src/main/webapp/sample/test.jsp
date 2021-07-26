@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
-	<h1>TEST!!!</h1>
+	<h1></h1>
 </body>
 </html>
